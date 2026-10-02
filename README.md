@@ -1,56 +1,54 @@
-🎓✨ Sistema de Gestión Académica en C++
+# 🎓 Sistema de Gestión Académica en C++
 
-🤖 Proyecto desarrollado en C++ aplicando Programación Orientada a Objetos (POO)
-📚 Gestión de alumnos, materias, calificaciones, maestros y administradores.
-💻 Interfaz completamente basada en consola.
+Sistema de gestión académica desarrollado en **C++** aplicando los principios de **Programación Orientada a Objetos (POO)**. Permite administrar alumnos, materias, calificaciones, maestros y administradores mediante una interfaz de consola.
 
-🌟 Descripción del proyecto
+---
 
-Este proyecto consiste en un Sistema de Gestión Académica desarrollado en C++, diseñado para administrar diferentes tipos de personas dentro de una institución educativa.
+## 📑 Tabla de Contenidos
+
+- [Descripción](#-descripción)
+- [Objetivo](#-objetivo)
+- [Jerarquía de Clases](#-jerarquía-de-clases)
+- [Estructura de Clases](#-estructura-de-clases)
+- [Conceptos de POO Aplicados](#-conceptos-de-poo-aplicados)
+- [Menú Principal](#-menú-principal)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologías y Librerías](#-tecnologías-y-librerías)
+- [Requisitos](#-requisitos)
+- [Compilación y Ejecución](#-compilación-y-ejecución)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Mejoras Futuras](#-mejoras-futuras)
+- [Uso de IA](#-uso-de-inteligencia-artificial)
+- [Conclusión](#-conclusión)
+
+---
+
+## 📖 Descripción
+
+Este proyecto consiste en un **Sistema de Gestión Académica** desarrollado en C++, diseñado para administrar diferentes tipos de personas dentro de una institución educativa.
 
 El sistema permite trabajar con:
 
-👨‍🎓 Alumnos
+- 👨‍🎓 Alumnos
+- 👨‍🏫 Maestros
+- 👨‍💼 Administradores
+- 📚 Materias
+- 📝 Calificaciones
+- 📖 Historial académico
 
-👨‍🏫 Maestros
+---
 
-👨‍💼 Administradores
+## 🧠 Objetivo
 
-📚 Materias
+Desarrollar un sistema académico sencillo que permita **practicar y demostrar el uso de POO en C++**, utilizando clases relacionadas mediante herencia, polimorfismo y memoria dinámica.
 
-📝 Calificaciones
+---
 
-📖 Historial académico
+## 🏗️ Jerarquía de Clases
 
-Además, el proyecto implementa conceptos importantes de Programación Orientada a Objetos, como:
+La estructura principal se basa en una clase padre `Persona`, de la cual heredan `Alumno`, `Maestro` y `Administrador`:
 
-🔹 Encapsulamiento
-🔹 Herencia
-🔹 Polimorfismo
-🔹 Constructores
-🔹 Métodos get y set
-🔹 Arreglos de objetos
-🔹 Punteros
-🔹 Memoria dinámica
-
-🧠 Objetivo
-
-El objetivo principal del proyecto es desarrollar un sistema académico sencillo que permita practicar y demostrar el uso de POO en C++, utilizando diferentes clases relacionadas entre sí.
-
-La estructura principal se basa en una clase padre:
-
-Persona
-
-
-de la cual heredan:
-
-Alumno
-Maestro
-Administrador
-
-
-De esta manera, se representa una relación de herencia dentro del sistema:
-
+```
                  ┌──────────────┐
                  │   Persona    │
                  └──────┬───────┘
@@ -60,208 +58,191 @@ De esta manera, se representa una relación de herencia dentro del sistema:
      ┌────▼────┐   ┌────▼─────┐  ┌────▼─────────┐
      │ Alumno  │   │ Maestro  │  │Administrador │
      └─────────┘   └──────────┘  └──────────────┘
+```
 
-🏗️ Estructura de clases
-👤 Clase Persona
+---
 
-Es la clase base del sistema.
+## 🧩 Estructura de Clases
 
-Contiene los atributos comunes para las personas:
+### 👤 Clase `Persona` (Base)
 
+Atributos comunes:
+
+```cpp
 string nombre;
 int edad;
+```
 
+**Métodos principales:**
 
-También proporciona métodos para modificar y consultar estos datos.
+| Método          | Función              |
+|-----------------|----------------------|
+| `setNombre()`   | Modifica el nombre   |
+| `getNombre()`   | Obtiene el nombre    |
+| `setEdad()`     | Modifica la edad     |
+| `getEdad()`     | Obtiene la edad      |
+| `mostrar()`     | Muestra los datos    |
 
-🔧 Principales métodos
-Método	Función
-setNombre()	Modifica el nombre
-getNombre()	Obtiene el nombre
-setEdad()	Modifica la edad
-getEdad()	Obtiene la edad
-mostrar()	Muestra los datos
+Incluye un **destructor virtual** para permitir el uso correcto de polimorfismo con punteros:
 
-Además, posee un destructor virtual:
+```cpp
+virtual ~Persona() {}
+```
 
-virtual ~Persona() {
-}
+---
 
+### 🎓 Clase `Alumno`
 
-Esto permite trabajar correctamente con herencia y punteros de tipo Persona.
+Hereda de `Persona`:
 
-🎓 Clase Alumno
-
-La clase Alumno hereda de Persona:
-
+```cpp
 class Alumno : public Persona
+```
 
+Atributos adicionales:
 
-Además de los datos heredados, contiene:
-
+```cpp
 string matricula;
 Materia materias[10];
 Calificacion calificaciones[10];
 int numMaterias;
 int numCalificaciones;
+```
 
-📌 Funcionalidades
+**Funcionalidades:**
 
-El alumno puede:
+- 🆔 Tener una matrícula
+- 📚 Registrar materias
+- 📝 Registrar calificaciones
+- 🔍 Buscar materias por clave
+- 📖 Consultar historial académico
 
-🆔 Tener una matrícula.
+---
 
-📚 Registrar materias.
+### 📚 Clase `Materia`
 
-📝 Registrar calificaciones.
-
-🔍 Buscar materias mediante su clave.
-
-📖 Consultar su historial académico.
-
-📚 Clase Materia
-
-Representa una materia académica.
-
-Sus atributos son:
-
+```cpp
 string nombre;
 string clave;
+```
 
+Ejemplo: `Programacion` — `PROG01`
 
-Ejemplo:
+Métodos: `setNombre()`, `getNombre()`, `setClave()`, `getClave()`, `mostrar()`.
 
-Materia: Programacion
-Clave: PROG01
+---
 
-🔧 Métodos principales
-setNombre()
-getNombre()
+### 📝 Clase `Calificacion`
 
-setClave()
-getClave()
-
-mostrar()
-
-📝 Clase Calificacion
-
-Representa una calificación asociada a una materia.
-
-Contiene:
-
+```cpp
 string claveMateria;
 float nota;
+```
 
+La nota debe estar en el rango **0 – 10**. Si se introduce fuera de rango, se muestra:
 
-La nota solamente puede encontrarse dentro del rango:
-
-0 ─────────────── 10
-
-
-Si se introduce una calificación fuera de ese rango, el programa muestra:
-
+```
 Nota invalida.
+```
 
-👨‍🏫 Clase Maestro
+---
 
-La clase Maestro también hereda de Persona:
+### 👨‍🏫 Clase `Maestro`
 
+```cpp
 class Maestro : public Persona
+```
 
+Atributo adicional:
 
-Agrega el atributo:
-
+```cpp
 string especialidad;
-
+```
 
 Ejemplo:
-
+```
 Nombre: Carlos
 Edad: 35
 Especialidad: Matematicas
+```
 
-👨‍💼 Clase Administrador
+---
 
-La clase Administrador hereda igualmente de Persona:
+### 👨‍💼 Clase `Administrador`
 
+```cpp
 class Administrador : public Persona
+```
 
+Atributo adicional:
 
-Su atributo adicional es:
-
+```cpp
 string departamento;
-
+```
 
 Ejemplo:
-
+```
 Nombre: Ana
 Edad: 40
 Departamento: ControlEscolar
+```
 
-🔄 Herencia
+---
 
-Una de las partes importantes del proyecto es la utilización de herencia.
+## 🧬 Conceptos de POO Aplicados
 
-Tanto Alumno, Maestro como Administrador utilizan los atributos y métodos de Persona.
+### 🔒 Encapsulamiento
 
+Los atributos se mantienen privados y se accede mediante getters/setters:
+
+```cpp
+private:
+    string matricula;
+```
+
+### 🔄 Herencia
+
+```cpp
 class Alumno : public Persona
-
 class Maestro : public Persona
-
 class Administrador : public Persona
+```
 
+### 🎭 Polimorfismo
 
-Esto evita repetir código y permite reutilizar funcionalidades comunes.
+Uso de punteros de la clase base:
 
-🧬 Polimorfismo
-
-El programa también utiliza polimorfismo mediante punteros.
-
-Se utiliza un arreglo de punteros:
-
+```cpp
 Persona* personas[100];
-
-
-En este arreglo pueden almacenarse objetos de diferentes clases derivadas:
-
 personas[numPersonas] = new Maestro(n, e, esp);
-
-
-o:
-
-personas[numPersonas] = new Administrador(n, e, d);
-
-
-Posteriormente se puede recorrer el arreglo y llamar:
-
 personas[i]->mostrar();
+```
 
+### 🏗️ Constructores
 
-De esta manera, cada objeto utiliza su propia implementación del método mostrar().
+Cada clase posee constructores para inicializar sus atributos.
 
-🧮 Gestión de alumnos
+### 🧹 Destructor virtual
 
-El programa puede almacenar hasta:
+```cpp
+virtual ~Persona() {}
+```
 
-const int MAX = 10;
+### 💾 Memoria dinámica
 
+Liberación al finalizar el programa:
 
-Por lo tanto:
+```cpp
+for (int i = 0; i < numPersonas; i++) {
+    delete personas[i];
+}
+```
 
-👨‍🎓 Máximo de alumnos: 10
+---
 
-Cada alumno puede tener:
+## 🎮 Menú Principal
 
-📚 Máximo de materias: 10
-
-y:
-
-📝 Máximo de calificaciones: 10
-
-🎮 Menú principal
-
-Al iniciar el programa aparece el siguiente menú:
-
+```
 ╔════════════════════════════════════════╗
 ║              📚 MENÚ                   ║
 ╠════════════════════════════════════════╣
@@ -280,107 +261,78 @@ Al iniciar el programa aparece el siguiente menú:
 ║ 13. Mostrar Maestros y Administradores ║
 ║ 14. Salir                              ║
 ╚════════════════════════════════════════╝
+```
 
-⚙️ Funcionalidades
-👨‍🎓 Registrar alumno
+---
 
-Permite introducir:
+## ⚙️ Funcionalidades
 
-Nombre
-Edad
-Matrícula
+### 👨‍🎓 Registrar Alumno
 
+Solicita:
+- Nombre
+- Edad
+- Matrícula
 
-Ejemplo:
-
+```
 Nombre: Juan
 Edad: 20
 Matricula: A001
 
 Alumno registrado.
+```
 
-🔎 Buscar alumno
+### 🔎 Buscar Alumno por Nombre
 
-El sistema permite buscar un alumno utilizando su nombre.
-
+```
 Nombre del alumno a buscar: Juan
 
-
-Si existe:
-
 Alumno encontrado en la posicion 1:
-
 Nombre: Juan
 Edad: 20
 Matricula: A001
+```
 
-✏️ Modificar alumno
+### ✏️ Modificar Alumno
 
-Permite cambiar:
+Permite cambiar: nombre, edad y matrícula.
 
-👤 Nombre
+### 🗑️ Eliminar Alumno
 
-🎂 Edad
+Desplaza los elementos posteriores para ocupar el hueco:
 
-🆔 Matrícula
-
-🗑️ Eliminar alumno
-
-El sistema busca al alumno y posteriormente mueve los elementos siguientes del arreglo para ocupar su lugar.
-
-Esto se realiza mediante:
-
+```cpp
 for (int i = indice; i < cantidadAlumnos - 1; i++) {
     alumnos[i] = alumnos[i + 1];
 }
-
-
-Después se reduce la cantidad de alumnos:
-
 cantidadAlumnos--;
+```
 
-📚 Agregar materia
+### 📚 Agregar Materia
 
-Primero se busca al alumno y después se registra:
-
-Nombre de la materia
-Clave de la materia
-
-
-Ejemplo:
-
+```
 Nombre de la materia: Programacion
 Clave de la materia: PROG01
 
 Materia agregada.
+```
 
-📝 Registrar calificación
+### 📝 Registrar Calificación
 
-Para registrar una calificación es necesario que la materia exista previamente.
+Requiere que la materia exista previamente:
 
-Ejemplo:
-
+```
 Clave de la materia: PROG01
 Nota: 9.5
 
 Calificacion registrada.
+```
 
+Si no existe: `La materia no existe.`
 
-Si la materia no existe:
+### 📖 Historial Académico
 
-La materia no existe.
-
-📖 Historial académico
-
-La opción:
-
-10. Mostrar Historial Academico.
-
-
-permite visualizar las materias y sus respectivas calificaciones.
-
-Ejemplo:
-
+```
 Historial de Juan
 
 Materia: Programacion
@@ -392,301 +344,197 @@ Materia: Matematicas
 Clave: MAT01
 Nota: 8.7
 ---------------------
+```
 
-👨‍🏫 Registro de maestros
+### 👨‍🏫 Registrar Maestro
 
-El sistema permite registrar maestros mediante:
-
-Nombre
-Edad
-Especialidad
-
-
-Ejemplo:
-
+```
 Nombre: Carlos
 Edad: 35
 Especialidad: Programacion
 
 Maestro registrado.
+```
 
-👨‍💼 Registro de administradores
+### 👨‍💼 Registrar Administrador
 
-También es posible registrar administradores:
-
-Nombre
-Edad
-Departamento
-
-
-Ejemplo:
-
+```
 Nombre: Ana
 Edad: 40
 Departamento: Servicios
 
 Administrador registrado.
+```
 
-👥 Mostrar personas
+### 👥 Mostrar Maestros y Administradores
 
-La opción:
+Recorre el arreglo `Persona* personas[100]`, demostrando el uso de **punteros, herencia y polimorfismo**.
 
-13. Mostrar Maestros y Administradores.
+### 📊 Calcular Promedio
 
+Actualmente calcula el **promedio de edades** de los alumnos:
 
-recorre el arreglo:
-
-Persona* personas[100];
-
-
-y muestra la información almacenada.
-
-Esto permite demostrar el uso de punteros, herencia y polimorfismo. 🧠✨
-
-📊 Cálculo del promedio
-
-La opción:
-
-4. Calcular Promedio.
-
-
-calcula actualmente el promedio de edades de los alumnos registrados.
-
-La operación utilizada es:
-
+```cpp
 double suma = 0;
-
 for (int i = 0; i < cantidadAlumnos; i++) {
     suma += alumnos[i].getEdad();
 }
-
 double promedio = suma / cantidadAlumnos;
-
+```
 
 Ejemplo:
-
+```
 Promedio de edades: 20.5
+```
 
+> 💡 **Nota:** Aunque la opción se llama "Calcular Promedio", en esta versión calcula el promedio de las edades, no el de las calificaciones.
 
-💡 Nota: Aunque la opción se llama "Calcular Promedio", en esta versión calcula el promedio de las edades, no el promedio de las calificaciones.
+### 📏 Límites del sistema
 
-🛠️ Tecnologías utilizadas
-Tecnología	Uso
-🟦 C++	Lenguaje principal
-🧱 POO	Estructura del proyecto
-🔗 Herencia	Relación entre Persona y sus clases derivadas
-🧬 Polimorfismo	Uso de punteros Persona*
-📦 Arreglos	Almacenamiento de datos
-💾 Memoria dinámica	Creación de maestros y administradores
-🖥️ Consola	Interfaz del programa
-📦 Librerías utilizadas
+| Elemento            | Máximo |
+|---------------------|--------|
+| Alumnos             | 10     |
+| Materias por alumno | 10     |
+| Calificaciones      | 10     |
 
-El proyecto utiliza principalmente:
+---
 
+## 🛠️ Tecnologías y Librerías
+
+| Tecnología           | Uso                                        |
+|----------------------|--------------------------------------------|
+| 🟦 C++               | Lenguaje principal                         |
+| 🧱 POO               | Estructura del proyecto                    |
+| 🔗 Herencia          | Relación entre `Persona` y sus derivadas   |
+| 🧬 Polimorfismo      | Uso de punteros `Persona*`                 |
+| 📦 Arreglos          | Almacenamiento de datos                    |
+| 💾 Memoria dinámica  | Creación de maestros y administradores     |
+| 🖥️ Consola           | Interfaz del programa                      |
+
+**Librerías utilizadas:**
+
+```cpp
 #include <iostream>
 #include <string>
+```
 
-iostream
+- `iostream` → entrada/salida (`cin`, `cout`)
+- `string` → cadenas de texto (`string nombre`, `string matricula`, etc.)
 
-Se utiliza para la entrada y salida de datos:
+---
 
-cin
-cout
+## 💻 Requisitos
 
-string
+- Un compilador de C++ (GCC, MinGW, Visual Studio, etc.)
+- Un IDE compatible (Code::Blocks, Dev-C++, VS Code, etc.)
+- Soporte para C++
 
-Permite trabajar con cadenas de texto:
+---
 
-string nombre;
-string matricula;
-string especialidad;
+## ▶️ Compilación y Ejecución
 
-🧹 Liberación de memoria
+**Compilar con g++:**
 
-Los maestros y administradores se crean dinámicamente mediante:
+```bash
+g++ main.cpp -o sistema
+```
 
-new
+**Ejecutar:**
 
+🪟 **Windows:**
+```bash
+sistema.exe
+```
 
-Por ejemplo:
+🐧 **Linux / 🍎 macOS:**
+```bash
+./sistema
+```
 
-personas[numPersonas] = new Maestro(n, e, esp);
+---
 
+## 📁 Estructura del Proyecto
 
-Por esta razón, al finalizar el programa se libera la memoria:
-
-for (int i = 0; i < numPersonas; i++) {
-    delete personas[i];
-}
-
-
-Esto ayuda a evitar fugas de memoria. 🧹💾
-
-📁 Estructura del proyecto
-
-Una estructura sencilla del proyecto sería:
-
+```
 📂 SistemaGestionAcademica
 │
 ├── 📄 main.cpp
-│
 └── 📄 README.md
+```
 
-💻 Requisitos
+---
 
-Para ejecutar el proyecto necesitas:
+## 🚀 Mejoras Futuras
 
-💻 Un compilador de C++.
+- 💾 Guardar información en archivos `.txt`
+- 📂 Cargar automáticamente los datos al iniciar
+- 🔐 Sistema de usuarios y contraseñas
+- 📊 Calcular el promedio real de las calificaciones
+- 📈 Generar estadísticas académicas
+- 🔎 Búsqueda por matrícula
+- 🗃️ Usar `vector` en lugar de arreglos estáticos
+- 🧱 Separar las clases en archivos `.h` y `.cpp`
+- 🗄️ Implementar una base de datos
+- 🖥️ Crear una interfaz gráfica
+- 📝 Permitir nombres con espacios usando `getline()`
+- 🛡️ Validación de entradas del usuario
 
-🛠️ GCC / MinGW / Visual Studio / Code::Blocks / Dev-C++ u otro IDE compatible.
+---
 
-📚 Soporte para C++.
+## 🤖 Uso de Inteligencia Artificial
 
-▶️ Compilar y ejecutar
+Este proyecto puede apoyarse en herramientas de IA durante su desarrollo. La IA puede utilizarse como apoyo para:
 
-Si utilizas g++, puedes compilar el proyecto con:
+- 💡 Generar ideas para la estructura del programa
+- 🧠 Comprender conceptos de C++
+- 🐛 Detectar errores
+- 📚 Explicar funciones y clases
+- ✨ Mejorar la documentación
+- 📝 Organizar el README
+- 🚀 Proponer mejoras
 
-g++ main.cpp -o sistema
+La **revisión, comprensión, adaptación y ejecución del código** forman parte del proceso de desarrollo del proyecto.
 
+---
 
-Después ejecuta:
+## 🎯 Conclusión
 
-🪟 Windows
-sistema.exe
+Este Sistema de Gestión Académica representa una aplicación práctica de los fundamentos de **Programación Orientada a Objetos en C++**.
 
-🐧 Linux / 🍎 macOS
-./sistema
+A través de sus clases y funcionalidades es posible administrar:
 
-🧠 Conceptos de POO aplicados
+```
+👨‍🎓 Alumnos  →  📚 Materias  →  📝 Calificaciones
+```
 
-Este proyecto permite observar varios conceptos fundamentales:
+Y también:
 
-🔒 Encapsulamiento
-
-Los atributos se mantienen privados:
-
-private:
-    string matricula;
-
-
-y se accede a ellos mediante métodos:
-
-setMatricula()
-getMatricula()
-
-🧬 Herencia
-
-Las clases derivadas utilizan:
-
-: public Persona
-
-🎭 Polimorfismo
-
-Se utilizan punteros de la clase base:
-
-Persona* personas[100];
-
-
-para almacenar diferentes tipos de objetos.
-
-🏗️ Constructores
-
-Cada clase posee constructores para inicializar sus atributos.
-
-🧹 Destructor virtual
-
-La clase Persona cuenta con:
-
-virtual ~Persona() {
-}
-
-
-lo cual es importante cuando se trabaja con objetos derivados mediante punteros de la clase base.
-
-🚀 Posibles mejoras futuras
-
-El proyecto puede continuar creciendo con nuevas funcionalidades:
-
-💾 Guardar información en archivos .txt.
-
-📂 Cargar automáticamente los datos al iniciar.
-
-🔐 Agregar un sistema de usuarios y contraseñas.
-
-📊 Calcular el promedio real de las calificaciones.
-
-📈 Generar estadísticas académicas.
-
-🔎 Permitir búsquedas por matrícula.
-
-🗃️ Utilizar vector en lugar de arreglos estáticos.
-
-🧱 Separar las clases en archivos .h y .cpp.
-
-🗄️ Implementar una base de datos.
-
-🖥️ Crear una interfaz gráfica.
-
-📝 Permitir nombres con espacios utilizando getline().
-
-🛡️ Agregar validación de entradas del usuario.
-
-🤖 Uso de Inteligencia Artificial
-
-Este proyecto puede contar con apoyo de herramientas de Inteligencia Artificial 🤖 durante su desarrollo.
-
-La IA puede utilizarse como apoyo para:
-
-💡 Generar ideas para la estructura del programa.
-
-🧠 Comprender conceptos de C++.
-
-🐛 Detectar errores.
-
-📚 Explicar funciones y clases.
-
-✨ Mejorar la documentación.
-
-📝 Organizar el README.
-
-🚀 Proponer mejoras para el proyecto.
-
-La revisión, comprensión, adaptación y ejecución del código forman parte del proceso de desarrollo del proyecto.
-
-🎯 Conclusión
-
-Este Sistema de Gestión Académica representa una aplicación práctica de los fundamentos de Programación Orientada a Objetos en C++.
-
-A través de sus diferentes clases y funcionalidades es posible administrar:
-
-👨‍🎓 Alumnos
-        ↓
-📚 Materias
-        ↓
-📝 Calificaciones
-
-
-y también:
-
+```
                  👤 Persona
                     │
         ┌───────────┼───────────┐
         ↓           ↓           ↓
    🎓 Alumno    👨‍🏫 Maestro   👨‍💼 Administrador
+```
 
+El proyecto demuestra cómo diferentes conceptos de C++ pueden combinarse para crear un sistema **funcional, organizado y fácilmente ampliable**. 🚀
 
-El proyecto demuestra cómo diferentes conceptos de C++ pueden combinarse para crear un sistema funcional, organizado y fácilmente ampliable. 🚀
+---
 
-⭐ Proyecto académico
+```
 ╔══════════════════════════════════════════╗
 ║      🎓 SISTEMA DE GESTIÓN ACADÉMICA    ║
 ║                                          ║
 ║          💻 Desarrollado en C++          ║
 ║          🧠 Programación Orientada a     ║
-║             Objetos                     ║
+║             Objetos                      ║
 ║                                          ║
-║          🤖 + 💻 + 📚 + 🚀              ║
+║          🤖 + 💻 + 📚 + 🚀               ║
 ╚══════════════════════════════════════════╝
+```
 
+> ✨ *"Cada línea de código es un paso más hacia convertir una idea en un programa."* 💻🚀
 
-✨ "Cada línea de código es un paso más hacia convertir una idea en un programa." 💻🚀
+---
+
+⭐ **Proyecto académico**
